@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Welcome from './pages/welcome/Welcome';
+import LogInPage from './pages/log-in-page/LogInPage';
+import UserDashBoard from './pages/user-dash/UserDashBoard';
+import NavBar from './components/navbar/NavBar';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import SignUpPage from './pages/sign-up-page/SignUpPage';
+import AdminDashBoard from './pages/admin-dash/AdminDashBoard';
+
 
 function App() {
+  const [user, setUser] = useState(null);
+  // const [admin, setAdmin] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app-container">
+
+      {user ?
+        <>
+        <NavBar />
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/login" element={<LogInPage />} />
+            <Route path='/user/dashboard' element={<UserDashBoard />} />
+            <Route path='/admin/dashboard' element={<AdminDashBoard />} />
+          </Routes>
+        </>
+       : <SignUpPage setUser={setUser} />}
+
+      </div>
     </div>
   );
 }
