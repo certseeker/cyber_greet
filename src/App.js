@@ -20,15 +20,17 @@ function App() {
       {user ?
         <>
         <NavBar />
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/login" element={<LogInPage />} />
+        <Routes>
             <Route path='/user/dashboard' element={<UserDashBoard />} />
             <Route path='/admin/dashboard' element={<AdminDashBoard />} />
           </Routes>
         </>
-       : <SignUpPage setUser={setUser} />}
-
+       :
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path='/signup' element={<SignUpPage setUser={setUser} /> } />
+          <Route path="/login" element={<LogInPage />} />
+        </Routes>}
       </div>
     </div>
   );

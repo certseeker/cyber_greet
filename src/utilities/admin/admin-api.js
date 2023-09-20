@@ -1,5 +1,5 @@
-import { getToken } from './users-service';
-const BASE_URL = '/api/users';
+import { getToken } from './admin-service';
+const BASE_URL = '/api/admin';
 
 /*--- Helper Functions ---*/
 
@@ -25,8 +25,8 @@ async function sendRequest(url, method = 'GET', payload = null) {
 
 // -- Requests --
 
-export async function signUp(userData) {
-  return sendRequest(BASE_URL, 'POST', userData);
+export async function signUp(adminData) {
+  return sendRequest(BASE_URL, 'POST', adminData);
 }
 
 export async function login(credentials) {

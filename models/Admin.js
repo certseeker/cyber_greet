@@ -12,12 +12,12 @@ const adminSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    trim: true,
-    required: true,
-    minLength: 6,
-  },
+  // password: {
+  //   type: String,
+  //   trim: true,
+  //   required: true,
+  //   minLength: 6,
+  // },
   adminPassword: {
     type: String, // Specific admin password field
     trim: true,
@@ -38,3 +38,5 @@ adminSchema.pre('save', async function (next) {
     return next(error);
   }
 });
+
+module.exports = mongoose.model('Admin', adminSchema);
