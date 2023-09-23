@@ -9,7 +9,7 @@ export default function Welcome() {
       <h1 className='page-name'>Cyber Greet</h1>
       <div>
         <p className='description'>
-          Your one stop for your dream cyber security career upgrade. 
+          The one stop for your cyber security career upgrade
         </p>
       </div>
       <div className='button-box'>

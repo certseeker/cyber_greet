@@ -1,9 +1,9 @@
-import * as usersAPI from './users-api'
+import * as usersAPI from './users-api';
 
 export function getToken() {
   const token = localStorage.getItem('token');
   if (!token) return null;
-
+  console.log(token)
   const payload = JSON.parse(atob(token.split('.')[1]));
 
   if (payload.exp < Date.now() / 1000) {
@@ -22,7 +22,7 @@ export function getUser() {
 
 export async function signUp(userData) {
   const token = await usersAPI.signUp(userData);
-
+  console.log(token)
   localStorage.setItem('token', token);
 
   return getUser();
@@ -33,7 +33,7 @@ export async function login(credentials) {
 
   localStorage.setItem('token', token);
 
-  return getUser()
+  return getUser();
 }
 
 export async function checkToken() {

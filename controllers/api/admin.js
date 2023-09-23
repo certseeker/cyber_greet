@@ -1,10 +1,10 @@
-const User = require('../../models/User');
+const Admin = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-function createJWT(user) {
+function createJWT(admin) {
   return jwt.sign(
-    { user },
+    { admin },
     process.env.SECRET,
     { expiresIn: '24h' }
   );
@@ -12,10 +12,10 @@ function createJWT(user) {
 
 async function create(req, res) {
   try {
-    const user = await User.create(req.body);
+    const admin = await Admin.create(req.body);
 
-    const token = createJWT(user);
-    console.log(token)
+    const token = createJWT(admin);
+
     res.status(200).json(token)
   } catch (err) {
     console.log(err)
@@ -28,16 +28,16 @@ async function login(req, res) {
   try {
     // ------------------
     // This is a findOne for a single user matching the email that was input into the login form
-    User.findOne({ email: req.body.email })
+    Admin.findOne({ email: req.body.email })
       // ------------------
       // after the findOne completes, we do this next bit
-      .then(foundUser => {
+      .then(foundAdmin => {
         // ------------------
         // important thing to note is that findOne will not error if no user is found, instead it just sets foundUser to undefined. therefore, we have to check if a user was found.
-        if (foundUser) {
+        if (foundAdmin) {
           // ------------------
           // if a user was found, we then need to compare the password they entered in the login form with the password stored in the database. We do not have to input the salt becuase the hash in the database also contains a key used to rehash a new password for comparison.
-          bcrypt.compare(req.body.password, foundUser.password, (error, result) => {
+          bcrypt.compare(req.body.password, foundAdmin.password, (error, result) => {
             // ------------------
             // if there was an error in the compare, this runs
             if (error) {
@@ -51,7 +51,7 @@ async function login(req, res) {
               if (result === true) {
                 // ------------------
                 // create a token using the info that we found initially
-                const token = createJWT(foundUser);
+                const token = createJWT(foundAdmin);
                 // ------------------
                 // sends back a status code of 200 (ok) as well as the token that we just created
                 res.status(200).json(token);

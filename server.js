@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/api/users', require('./routes/api/users'));
 
 //this is the path for the admin
-app.use('/api/admin', require('./routes/admin/users'));
+app.use('/api/admin', require('./routes/api/admin'));
 
 
 // The following "catch all" route (note the *) is necessary

@@ -11,4 +11,23 @@
   border-radius: .5vmin;
   outline: none;
   cursor: pointer;
+  font-family: 'Noto Serif', serif;
+  margin-top: 50px;
 }
+
+.description {
+  /* font-family: 'Encode Sans Expanded', sans-serif; */
+  font-family: 'Noto Serif', serif;
+  /* font-family: 'Tektur', cursive;
+  font-family: 'Ubuntu', sans-serif; */
+  margin-top: -80px;
+  margin-bottom: 100px;
+}
+
+.page-name{
+  /* font-family: 'Encode Sans Expanded', sans-serif; */
+  font-family: 'Righteous', cursive;
+  font-size: 120px;
+  margin-top: 300px;
+}
+

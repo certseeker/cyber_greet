@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { signUp } from '../../utilities/users-service';
-import { useNavigate } from "react-router-dom";
+
 
 export default class SignUpForm extends Component {
 
@@ -25,6 +25,7 @@ export default class SignUpForm extends Component {
             const formData = { ...this.state };
             delete formData.error;
             delete formData.confirm;
+            console.log(formData);
 
             const user = await signUp(formData);
             this.props.setUser(user);
@@ -60,3 +61,7 @@ export default class SignUpForm extends Component {
         );
     }
 }
+
+//tried to use:
+// import { useNavigate } from "react-router-dom";
+//but had issues since it is a class and not a function
